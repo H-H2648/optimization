@@ -1,3 +1,12 @@
+#solves linear system of equatin of the form:
+#a11 x1 + ... + a1n xn = b1
+#...
+#am1 x1 + ... + amn xn = bn
+
+#more specifically, it solves whether a solution exists.
+#If there is a solution, it outputs one of such solution (for proof that this program is indeed correct)
+#If there is no solution, it finds y^T such that y^TA = 0 but y^Tb =/= 0 (clearly, there cannot be a solution) when that is the case
+
 import numpy as np
 
 
