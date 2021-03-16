@@ -27,8 +27,8 @@ def check0Column(matrix, index):
 def find0Row(matrix, index):
     found = []
     for ii in range(index, len(matrix)):
-        if np.all(matrix[index] == 0):
-            found.append(index)
+        if np.all(matrix[ii] == 0):
+            found.append(ii)
     return found
 
 
@@ -113,8 +113,8 @@ def verifyFalse(coefficients, value, apparentProof):
 
 x = np.array([
     [1, -1, 1, 0],
-    [2, -1, 2, -2],
-    [-1, 1/2, -1, 1],
+    [2, -2, 2, 0],
+    [-1, 1/2, -1, 0],
 ])
 
 y = np.array([
