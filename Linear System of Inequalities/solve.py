@@ -14,9 +14,6 @@ import numpy as np
 def scaleAllRows(coefficients, value, index):
     scalarTransformation = np.identity(len(coefficients))
     for ii in range(len(coefficients)):
-        print(coefficients)
-        print(coefficients[ii])
-        print(coefficients[ii][index])
         scalar = abs(coefficients[ii][index])
         if scalar == 0:
             continue
@@ -82,7 +79,7 @@ def FourierMotzkinEliminate(coefficients, values, index, length, history):
     return (newCoefficients, newValues, transform, history)
 
 def findSolution(history, index, length):
-    solution = np.zeros(length - index - 2)
+    solution = np.zeros(length - index - 1)
     for ii in range(index, -1, -1):
         lessThanOrEqualToMatrix = history[ii][0]
         greaterThanOrEqualToMatrix = history[ii][1]
@@ -110,7 +107,7 @@ def FourierMotzkinSolve(coefficients, values, receipt=True):
     A = coefficients.copy()
     b = values.copy()
     yT = np.identity(len(A))
-    LENGTH = len(coefficients)
+    numVariables = len(coefficients[0])
     #history consists of [
     # matrix for [1, x_js] (j > i) such that its linear combination is less than or equal to xi),
     # matrix for [1, x_js] (j > i) such that its linear combination is greater than or equal to xi
@@ -126,10 +123,12 @@ def FourierMotzkinSolve(coefficients, values, receipt=True):
                     return False
         A, b, scalarTransformation = scaleAllRows(A, b, index)
         yT = np.dot(scalarTransformation, yT)
-        A, b, transform, history = FourierMotzkinEliminate(A, b, index, LENGTH, history)
+        #number of system is always changing so we have to reassign them each time
+        numSystem = len(A)
+        A, b, transform, history = FourierMotzkinEliminate(A, b, index, numSystem, history)
         if A.size == 0:
             if receipt:
-                return ((True, findSolution(history, index, LENGTH)))
+                return ((True, findSolution(history, index, numVariables)))
             else:
                 return True
         yT = np.dot(transform, yT)
@@ -143,10 +142,10 @@ def verifyFalse(coefficients, value, apparentProof):
 
 X = np.array(
     [
-        [-1, -1, 1],
-        [2, -1, -1],
-        [-1, -1, 0],
-        [0, -1, -1],
+        [1, 1, 1],
+        [-1, -1, 2],
+        [2, 3, 5],
+        [3, 7, 9],
     ]
 ).astype(float)
 
