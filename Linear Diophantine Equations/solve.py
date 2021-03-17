@@ -15,6 +15,12 @@ import math
 #maybe implement my own inverse function(?)
 from scipy import linalg
 
+
+#BASED ON FINDING THE HERMITE NORMAL FORM
+#The proof is based on Integer Farkas Lemma:
+
+#Ax = b, has an integer solution iff y^Tb is an integer for each y such that y^TA is an integer
+
 #note no return on the 3 helper elementary operations because it directly mutates the matrix input
 
 #pretty self explanatory

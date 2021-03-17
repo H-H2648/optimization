@@ -13,6 +13,11 @@ import numpy as np
 #Assumes M *N matrix, with M rows and N columns
 #the vector is of size M
 
+#BASED ON GAUSSIAN ELIMINATION
+#The proof of solution is based on the fundamental theorem of linear algebra:
+
+#Ax = b has a solution iff yTA = 0, y^Tb =/= 0 has no solution
+
 # helper
 # check if a given column is already zeros
 #O(M)

@@ -7,6 +7,12 @@
 #If there is a solution, it outputs one of such solution (for proof that this program is indeed correct)
 #If there is no solution, it finds y such that y >= 0, y^TA = 0 but y^Tb < 0 (clearly, there cannot be a solution since it means 0 <= t, for t < 0) when that is the case
 
+
+#BASED ON FOURIER MOTZSKIN ELIMINATION
+#The proof of solution from Farkas's lemma:
+
+#Ax <= b has a solution iff for all y >= 0, y^TA = 0^T, y^Tb < 0 has no solution
+
 import numpy as np
 
 
